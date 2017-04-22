@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>元素的水平垂直居中</title>
+    <style>
+      .clear::before{
+        content:'';
+        clear: both;
+      }
+
+      #horizontal>div{
+        background: #ccc;
+      }
+
+      #horizontal>div>*{
+        background: #eee;
+      }
+
+      #vertical>div{
+        background: #00ccee;
+      }
+
+      #pseudoClass::after{
+        content:'';
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="horizontal" style="width:100%;background:#fff;">
+      <!-- 水平居中 -->
+      <div style="text-align:center;"><span>1.行元素</span></div>
+
+      <div><div style="width:50%;margin:0 auto;">2.块元素</div></div>
+
+      <div style="width:fit-content;margin:0 auto;"><div style="display:inline-block;float:left;">3.子元素包含float:left</div></div>
+
+      <br />
+      <div>ssss</div>
+      <div style="display:flex;justify-content:center;"><div style="display:inline-block;">4.flex布局</div></div>
+
+      <div style="position:relative;" class="clear"><div style="position:absolute;left:50%;display:inline-block;transform:translate(-50%);">5.css3的transform</div></div>
+
+      <div style="position:relative;" class="clear"><div style="position:absolute;left:50%;width:50%;margin:0 -25%;">6.css3的transform</div></div>
+      <br />
+      <div style="position:relative;" class="clear"><div style="position:absolute;left:0;right:0;width:50%;margin:0 auto;">7.absolute</div></div>
+      <br />
+    </div>
+
+    <div id="vertical" style="width:100%;background:#fff;">
+      <div style="height:40px;line-height:40px;"><span>1.line-height</span></div>
+
+      <br />
+      <div id="pseudoClass" style="height:40px;"><div style="display:inline-block;vertical-align:middle;">2.vertical-align:middle;</div></div>
+
+      <div style="display:table;min-height:40px;"><p style="display:table-cell;vertical-align:middle;">3.父级元素的高度不定,+vertical-align:middle;</p></div>
+
+      <div style="min-height:40px;display:flex;align-items:center;"><p>4.flex</p></div>
+
+      <div>不在描述, transform、高度一定时的margin和position</div>
+
+    </div>
+
+  </body>
+</html>
