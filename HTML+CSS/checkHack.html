@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Checkbox Hack</title>
+    <style>
+      input[type=checkbox] {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      .checkboxDiv{
+        color: #000;
+      }
+
+      input[type=checkbox]:checked ~ .checkboxDiv {
+        color:#ff6600;
+      }
+
+    </style>
+  </head>
+  <body>
+    <label for="myCheckbox">我可以操作checkbox</label>
+
+    <input type="checkbox" name="" value="" id="myCheckbox" />
+
+    <div class="checkboxDiv">我是checkbox的显示层</div>
+  </body>
+</html>
