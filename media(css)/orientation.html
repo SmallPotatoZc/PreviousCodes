@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>orientation</title>
+    <!-- 外联样式 -->
+    <link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css">
+    <link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css">
+
+    <!-- 内联样式 -->
+    <style media="screen">
+      @media screen and (orientation:portrait) {
+        .landscape{
+          color:red;
+        }
+      }
+      @media screen and (orientation:landscape) {
+        .landscape{
+          color:blue;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="portrait">外联样式</h1>
+    <h1 class="landscape">内联样式</h1>
+
+  </body>
+</html>
