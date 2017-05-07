@@ -1,0 +1,53 @@
+/*径向渐变实现的球*/
+:root {
+  --base-color: #000;
+  --gradient-start: #5cabff;
+  --gradient-end: #000;
+  --gradient-1: -webkit-radial-gradient(100px 100px, circle, var(--gradient-start), var(--gradient-end));
+  --gradient-2: -webkit-radial-gradient(50% 50%, circle, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+}
+.circle {
+  display: block;
+  background: var(--gradient-1);
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+}
+.stage {
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  margin: 20px;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+.ball {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  background: -webkit-radial-gradient(50% 120%, circle cover, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+}
+.ball:before {
+  content: "";
+  position: absolute;
+  top: 1%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: -webkit-radial-gradient(50% 0px, circle, #ffffff, rgba(255, 255, 255, 0) 58%);
+  -webkit-filter: blur(5px);
+  z-index: 2;
+}
+.ball > .shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-2);
+  transform: rotateX(90deg) translateZ(-150px);
+  z-index: -1;
+}

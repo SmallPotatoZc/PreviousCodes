@@ -1,0 +1,19 @@
+:root {
+  --border-color: hsl(0, 0%, 70%);
+  --base-color: red;
+}
+:root:-webkit-window-inactive {
+  --border-color: hsl(0, 0%, 85%);
+  --base-color: blue;
+}
+.sidebar{
+  width: 300px;
+  height: 100px;
+}
+.sidebar.left {
+    border-right: 1px solid var(--border-color);
+    color: var(--base-color);
+}
+.sidebar.right {
+    border-left: 1px solid var(--border-color);
+}
