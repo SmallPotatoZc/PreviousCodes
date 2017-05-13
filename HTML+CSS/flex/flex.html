@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Flex</title>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /** 水平伸缩容器**/
+    .row-flex {
+      flex-flow: row wrap;
+    }
+
+    /** 垂直伸缩容器**/
+    .col-flex {
+      flex-flow: column wrap;
+    }
+
+    /** 伸缩容器**/
+    .flex-wrap {
+      display: flex;
+    }
+
+    /** 垂直居中**/
+    .midCenter {
+      /** 垂直居中核心**/
+      box-pack: center;
+      box-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /** 占位器**/
+    .page {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /** 真正滚动**/
+    .scroll-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+      flex: 1;
+    }
+
+    /** 头和尾巴**/
+    header,footer {
+      background: #f7f7f7;
+      height: 44px;
+    }
+
+    footer>div {
+      flex: 1;
+      border: 1px solid #666;
+      margin: 4px;
+    }
+
+    section {
+      margin: 3px 5px;
+    }
+
+    /** 真正设置高度 **/
+    #banner {
+      border: 2px solid #999;
+      margin: 1px;
+      height: 100px;
+    }
+
+    #quirk,#four-col {
+      height: 150px;
+    }
+
+    #three-col,#two-col {
+      height: 100px;
+    }
+
+    /** 内部组件**/
+    #four-col>div,#three-col>div,#two-col>div {
+      flex: 1;
+    }
+
+    #four-col>div {
+      background: #aaebbe;
+      margin: 0 2px;
+    }
+
+    #three-col>div {
+      background: #8f82bc;
+      margin: 0 2px;
+    }
+
+    #two-col>div {
+      background: #f7baba;
+      margin: 0 2px;
+    }
+
+    #quirk>div {
+      margin: 0 2px;
+    }
+
+    #quirk>div:nth-child(1) {
+      background: #b9e2ee;
+      flex: 200;
+    }
+
+    #quirk>div:nth-child(2) {
+      flex: 175;
+    }
+
+    #quirk>div:nth-child(2)>div:nth-child(1) {
+      background: #b9e2ee;
+      flex: 60;
+      margin-bottom: 4px;
+    }
+
+    #quirk>div:nth-child(2)>div:nth-child(2) {
+      background: #b9e2ee;
+      flex: 30;
+    }
+  </style>
+</head>
+
+<body class="flex-wrap col-flex">
+  <header class="midCenter flex-wrap row-flex">我是标题</header>
+
+  <div class="page flex-wrap col-flex">
+    <div class="scroll-wrap">
+      <section class="midCenter flex-wrap" id="banner">
+        <div>我是banner</div>
+      </section>
+
+      <section id="quirk" class="flex-wrap row-flex">
+        <div></div>
+        <div class="flex-wrap col-flex">
+          <div></div>
+          <div></div>
+        </div>
+      </section>
+
+      <section id="four-col" class="flex-wrap row-flex">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </section>
+
+      <section id="two-col" class="flex-wrap row-flex">
+        <div></div>
+        <div></div>
+      </section>
+
+      <section id="three-col" class="flex-wrap row-flex">
+        <div></div>
+        <div></div>
+        <div></div>
+      </section>
+    </div>
+  </div>
+
+
+  <footer class="flex-wrap row-flex">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </footer>
+</body>
+
+</html>
