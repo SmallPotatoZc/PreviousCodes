@@ -9,26 +9,28 @@ var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
 gulp.task('build', function(){
-  return browserify({entries: './src/**/*.js', debug: true})
+  browserify({entries: './app/index.js', debug: false})
           .transform('babelify', {presets: ['es2015']})
           .bundle()
-          .pipe(source('app.js'))
-          .pipe(buffer())
-          .pipe(sourcemaps.init())
-          .pipe(uglify())
-          .pipe(sourcemaps.write('./maps'))
-          .pipe(gulp.dest('./dist/js'));
+          .pipe(source('index.js'))
+          //.pipe(buffer())
+          //.pipe(sourcemaps.init())
+          //.pipe(uglify())
+          //.pipe(sourcemaps.write('./maps'))
+          .pipe(gulp.dest('./app/dist/js'));
 });
 
 gulp.task('watch', ['build'], function(){
   browserSync.init({
     server: {
-      baseDir: '../dist/',
-      proxy: '3001'
+      baseDir: './app',
+      server: "./",
+      proxy: 3001
     }
   });
 
-  gulp.watch('../app/*.html').on('change', reload);
+  gulp.watch('./app/**/*.js', ['build']);
+  gulp.watch('./app/**/*').on('change', reload);
 });
 
 gulp.task('default', ['build', 'watch']);
