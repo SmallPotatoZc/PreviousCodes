@@ -7,10 +7,13 @@
       :root {
         --base-red: 255;
         color: rgba(calc(var(--base-red)), 0, 0, 1);
+
+        --base-width: 2;
       }
     </style>
   </head>
   <body>
+    <div style="width:var(--base-width);height:45px;background:blue;">var</div>
     <h1>我的颜色在变化</h1>
 
     <input id="color" type="number" min="0" max="255" />
