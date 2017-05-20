@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <title>Es6 语法</title>
   <script type="module">
-
-  import { area, circumference } from './module.js'
-  console.log("圆面积：" + area(4));
-  console.log("圆周长：" + circumference(14));
+  var square = require('lib').square;
+  var diag = require('lib').diag;
+  console.log(square(11)); // 121
+  console.log(diag(4, 3)); // 5
   </script>
 </head>
 

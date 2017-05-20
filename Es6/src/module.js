@@ -1,7 +1,13 @@
-export function area(radius) {
-  return Math.PI * radius * radius;
+//------ lib.js ------
+var sqrt = Math.sqrt;
+function square(x) {
+    return x * x;
 }
-
-export function circumference(radius) {
-  return 2 * Math.PI * radius;
+function diag(x, y) {
+    return sqrt(square(x) + square(y));
 }
+module.exports = {
+    sqrt: sqrt,
+    square: square,
+    diag: diag,
+};
