@@ -1,0 +1,17 @@
+{
+  "name": "parseJsonToTable",
+  "homepage": "https://github.com/SmallPotatoZc/selfCode",
+  "authors": [
+    "zhangChao <1148563917@qq.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>parse table</title>
+  <script src="./bower_components/angular/angular.min.js"></script>
+  <script src="./bower_components/lodash/lodash.js"></script>
+
+  <style>
+    .mm-table-wrapper {
+      position: relative;
+      border: 1px solid #d7dde4;
+      border-bottom: 0;
+      border-right: 0;
+    }
+
+    table:before {
+      content: "";
+      position: absolute;
+      background-color: #d7dde4;
+    }
+
+    colgroup {
+      display: table-column-group;
+    }
+
+    .mm-table {
+      width: inherit;
+      height: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      color: #657180;
+      font-size: 12px;
+      background-color: #fff;
+      box-sizing: border-box
+    }
+
+    .mm-table th,
+    td {
+      min-width: 0;
+      box-sizing: border-box;
+      text-align: left;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+      border-bottom: 1px solid #e3e8ee;
+    }
+
+    .mm-table:before {
+      width: 100%;
+      height: 1px;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .mm-table:after {
+      width: 1px;
+      height: 100%;
+      top: 0;
+      right: 0;
+      z-index: 3;
+    }
+
+    .mm-table th {
+      height: 40px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: #f5f7f9;
+    }
+
+    .mm-table th.mm-table-column-center {
+      text-align: center;
+    }
+
+    .mm-table th .mm-table-cell {
+      display: inline-block;
+      max-width: 100%;
+      box-sizing: border-box;
+      word-wrap: normal;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: break-all;
+      vertical-align: middle;
+    }
+
+    .mm-table td {
+      min-height: 0;
+      height: 32px;
+    }
+
+    .mm-table td .mm-table-cell {
+      padding: 0 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      word-break: break-all;
+      box-sizing: border-box;
+    }
+
+    .mm-table td a {
+      padding: 0 8px;
+      color: var(--mm-color-blue-light);
+      cursor: pointer;
+    }
+
+    .mm-table .mm-table-cell.mm-table-column-center {
+      padding: 0;
+      text-align: center;
+    }
+
+    .mm-table-header {
+      overflow: hidden;
+    }
+
+    .mm-table-body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .mm-table-row:hover {
+      background: var(--mm-color-blue-light-o);
+    }
+  </style>
+</head>
+
+<body ng-app="app" ng-controller="appCtl">
+  <div class="mm-table-wrapper">
+    <div class="mm-table">
+      <div class="mm-table-header">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <colgroup><col ng-repeat="head in data.thead track by $index" width="{{head.width}}" /></colgroup>
+          <thead>
+            <tr>
+              <th class="mm-table-column-center" ng-repeat="head in data.thead track by $index">
+                <div class="mm-table-cell"><span>{{head.name}}</span></div>
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="mm-table-body">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <colgroup><col ng-repeat="head in data.thead track by $index" width="{{head.width}}" /></colgroup>
+          <tbody class="mm-table-tbody">
+            <tr class="mm-table-row" ng-repeat="v in tableData track by $index">
+              <td ng-repeat="vv in v track by $index" ng-if="!(vv.id && vv.id != 0)" rowspan="{{vv.rowspan}}">
+                <div class="mm-table-cell mm-table-column-centesr">{{vv}}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var app = angular.module('app', []);
+
+    app.controller('appCtl', ['$scope', function($scope) {
+      $scope.data = {
+        "thead": [
+          {name: '列名1', width: '25%'},
+          {name: '列名2', width: '25%'},
+          {name: '列名3', width: '25%'},
+          {name: '列名4', width: '25%'}
+        ],
+        "tbody": [{
+            "name": '第一行名称',
+            "items": [
+              ['r1c2', 'r1c3', 'r1c4'],
+              ['r2c2', 'r2c3', 'r2c4'],
+              ['r3c2', 'r3c3', 'r3c4']
+            ]
+          }, // 第一行数据
+          {
+            "name": '第二行名称',
+            "items": [
+              ['r1c2', 'r1c3', 'r1c4'],
+              ['r2c2', 'r2c3', 'r2c4'],
+              ['r3c2', 'r3c3', 'r3c4']
+            ]
+          }, // 第二行数据
+        ]
+      };
+
+      function convertData(data) {
+        var res = [],
+          rowCount = 0;
+        _.forEach(data, function(v, k) {
+          if (v.name) {
+            if (_.isArray(v.items)) {
+              var rowspan = {
+                rowspan: v.items.length,
+                name: v.name,
+                id: 0
+              };
+              _.forEach(v.items, function(vv, kk) {
+                res[rowCount] = [];
+                res[rowCount][0] = _.cloneDeep(rowspan);
+                rowspan.id ++;
+                res[rowCount] = res[rowCount].concat(vv);
+                rowCount++;
+              });
+            } else {
+              console.assert(false, 'table data format error!');
+            }
+          } else {
+            if (_.isArray(v.items)) {
+              res[rowCount] = v.items;
+              rowCount++;
+            } else {
+              console.assert(false, 'table data format error!');
+            }
+          }
+        });
+
+        return res;
+      }
+
+      $scope.tableData = convertData($scope.data.tbody);
+
+      console.log('表格数据', $scope.tableData);
+    }]);
+  </script>
+</body>
+
+</html>
