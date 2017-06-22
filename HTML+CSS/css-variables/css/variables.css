@@ -1,0 +1,7 @@
+:root {
+  color: red;
+}
+
+.border {
+  border: 1px solid currentColor;
+}

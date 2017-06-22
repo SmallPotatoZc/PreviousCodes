@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>var + calc</title>
+    <style>
+      :root {
+        --base-red: 255;
+        color: rgba(calc(var(--base-red)), 0, 0, 1);
+
+        --base-width: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="width:var(--base-width);height:45px;background:blue;">var</div>
+    <h1>我的颜色在变化</h1>
+
+    <input id="color" type="number" min="0" max="255" />
+
+    <script>
+      var ele = document.querySelector('#color');
+
+      function setColor () {
+        var rootStyles = getComputedStyle(document.documentElement);
+        var defaultColor = rootStyles.getPropertyValue('--base-red');
+
+        // rootStyles.style.setProperty('--base-red', this.value);
+        document.documentElement.style.setProperty('--base-red', this.value);
+        console.log('sss', this.value, defaultColor);
+      }
+
+      ele.addEventListener('change', setColor, true);
+    </script>
+  </body>
+</html>

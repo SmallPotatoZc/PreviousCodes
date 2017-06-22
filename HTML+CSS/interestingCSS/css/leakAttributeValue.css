@@ -1,0 +1,9 @@
+#text[value^="01"] #img{
+  background: url(../images/img01.jpg);
+}
+#text[value^="02"] #img{
+  background: url(../images/img02.jpg);
+}
+#text[value^="03"] #img{
+  background: url(../images/img03.jpg);
+}

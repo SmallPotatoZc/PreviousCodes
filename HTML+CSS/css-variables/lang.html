@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>lang var</title>
+  <style>
+    :root,
+    :root:lang(en) {
+      --external-link: "external link";
+      --main-color: black;
+    }
+    :root:lang(de) {
+      --external-link: "externer Link";
+      --main-color: blue;
+    }
+
+    a[href^="http"]::after,
+    a[href^="https"]::after{content: " (" var(--external-link) ")"}
+
+    a{
+      color: var(--main-color)
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Text/color change according to the language (using CSS custom properties)</h2>
+
+  <div>
+    Language:
+    <select class="language">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+    </select>
+  </div>
+
+  <div>
+    <a href="https://drafts.csswg.org/css-variables/#example-97d3694f">source of the idea</a>
+  </div>
+
+  <script>
+    const selectEl = document.querySelector('.language');
+    selectEl.addEventListener('change', setLangFromSelect);
+
+    function setLangFromSelect(){
+     document.documentElement.setAttribute('lang', selectEl.value);
+    }
+
+    // init
+    setLangFromSelect();
+  </script>
+</body>
+
+</html>

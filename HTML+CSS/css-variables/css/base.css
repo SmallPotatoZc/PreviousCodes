@@ -1,0 +1,29 @@
+:root {
+  --zero-size: {
+    width: 0;
+    height: 0;
+  };
+
+  --triangle-to-bottom-size: 50px;
+  --triangle-to-bottom-color: red;
+
+  --triangle-to-bottom: {
+    @apple --zero-size;
+    border-style: solid;
+    border-width: var(--triangle-to-bottom-size) var(--triangle-to-bottom-size) 0 var(--triangle-to-bottom-size);
+    border-color: var(--triangle-to-bottom-color) transparent transparent transparent;
+  };
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 50px 0 50px;
+  border-color: #007bff transparent transparent transparent;
+}
+
+
+.triangle-to-bottom {
+  @apply --triangle-to-bottom;
+}
