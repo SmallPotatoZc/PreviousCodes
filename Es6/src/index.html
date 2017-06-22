@@ -5,10 +5,9 @@
   <meta charset="utf-8">
   <title>Es6 语法</title>
   <script type="module">
-  var square = require('lib').square;
-  var diag = require('lib').diag;
-  console.log(square(11)); // 121
-  console.log(diag(4, 3)); // 5
+    import * as app from "./app.js";
+
+    console.log('app', app);
   </script>
 </head>
 
