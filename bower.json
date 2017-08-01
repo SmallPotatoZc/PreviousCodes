@@ -1,0 +1,20 @@
+{
+  "name": "SmallPotatoZc",
+  "homepage": "https://github.com/SmallPotatoZc/SmallPotatoZc",
+  "authors": [
+    "zhangChao <1148563917@qq.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.18.1"
+  }
+}
