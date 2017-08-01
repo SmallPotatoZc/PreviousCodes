@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0"
+  }
+=======
   "name": "small-potato-gulp",
   "version": "1.0.0",
   "description": "",
@@ -261,4 +267,5 @@
   },
   "author": "Small Potato",
   "license": "ISC"
+>>>>>>> zhangChao
 }
