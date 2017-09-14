@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8">
     <title>zhangchao</title>
@@ -7,4 +8,27 @@
   <body>
     <h1>张超的网站master</h1>
   </body>
+=======
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="./chao.ico" />
+  <title>zhangchao</title>
+  <script src="./bower_components/moment/min/moment-with-locales.min.js"></script>
+</head>
+
+<body style="text-align: center;">
+  <h2>今天主人需要锻炼</h2>
+  <p id="days" style="font:italic bold 40px/50px arial,sans-serif;color: #8bc34a;"></h1>
+  <h2>个俯卧撑</h2>
+</body>
+<script>
+  var _days = document.querySelector('#days'); // 改变的天数值
+
+  var _sD = moment([2017, 07, 01]);
+  var _d = moment().diff(_sD, 'days');
+  _days.innerText = _d + 7;
+</script>
+
+>>>>>>> gh-pages
 </html>
